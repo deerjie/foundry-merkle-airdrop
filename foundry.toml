@@ -2,5 +2,12 @@
 src = "src"
 out = "out"
 libs = ["lib"]
+remappings=[
+    '@openzeppelin/=lib/openzeppelin-contracts',
+    'forge-std/=lib/forge-std/src',
+    'murky/=lib/murky',
+]
+# 当出现类似这种错误时用它开启权限：vm.writeFile: the path script/target/input.json is not allowed to be accessed for write operations
+fs_permissions = [{access = "read-write", path = "./"}]
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
