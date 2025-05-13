@@ -1,4 +1,5 @@
 
 install :; forge install OpenZeppelin/openzeppelin-contracts && forge install dmfxyz/murky
 
-generate :; forge script script/GenerateInput.s.sol:GenerateInput 
+generateMerkleInput :; forge script script/GenerateInput.s.sol:GenerateInput
+makeMerkleProof :; forge script script/MakeMerkle.s.sol:MakeMerkle

@@ -22,7 +22,6 @@ import {ScriptHelper} from "murky/script/common/ScriptHelper.sol"; // 导入辅�
  * @author kootsZhin
  * @notice https://github.com/dmfxyz/murky
  */
-
 contract MakeMerkle is Script, ScriptHelper {
     using stdJson for string; // 允许字符串直接调用 stdJson 的方法，便于 JSON 操作
 
@@ -49,7 +48,7 @@ contract MakeMerkle is Script, ScriptHelper {
     function getValuesByIndex(uint256 i, uint256 j) internal pure returns (string memory) {
         // 拼接成 .values.i.j 形式的路径
         return string.concat(".values.", vm.toString(i), ".", vm.toString(j));
-    } 
+    }
 
     /// @dev 生成输出文件的 JSON 条目
     function generateJsonEntries(string memory _inputs, string memory _proof, string memory _root, string memory _leaf)
@@ -92,7 +91,7 @@ contract MakeMerkle is Script, ScriptHelper {
                     // 如果类型为 address，从 JSON 读取地址
                     address value = elements.readAddress(getValuesByIndex(i, j));
                     // 地址类型先转 uint160，再转 uint256，最后转 bytes32
-                    data[j] = bytes32(uint256(uint160(value))); 
+                    data[j] = bytes32(uint256(uint160(value)));
                     input[j] = vm.toString(value); // 字符串化存储
                 } else if (compareStrings(types[j], "uint")) {
                     // 如果类型为 uint，从 JSON 读取字符串再转 uint

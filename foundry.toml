@@ -6,6 +6,7 @@ remappings=[
     '@openzeppelin/=lib/openzeppelin-contracts',
     'forge-std/=lib/forge-std/src',
     'murky/=lib/murky',
+    '@devops/=lib/foundry-devops'
 ]
 # 当出现类似这种错误时用它开启权限：vm.writeFile: the path script/target/input.json is not allowed to be accessed for write operations
 fs_permissions = [{access = "read-write", path = "./"}]

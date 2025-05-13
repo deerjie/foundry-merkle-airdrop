@@ -16,7 +16,7 @@ contract GenerateInput is Script {
     // 白名单地址数组，长度为 4
     string[] whitelist = new string[](4);
     // 输入文件的相对路径，生成的 JSON 文件会写入到该路径
-    string private constant  INPUT_PATH = "/script/target/input.json";
+    string private constant INPUT_PATH = "/script/target/input.json";
 
     // 主执行函数，调用时会自动执行
     function run() public {
@@ -51,14 +51,42 @@ contract GenerateInput is Script {
         for (uint256 i = 0; i < whitelist.length; i++) {
             if (i == whitelist.length - 1) {
                 // 最后一个地址后不加逗号
-                json = string.concat(json, '"', vm.toString(i), '"', ': { "0":', '"',whitelist[i],'"',', "1":', '"',amountString,'"', ' }');
+                json = string.concat(
+                    json,
+                    '"',
+                    vm.toString(i),
+                    '"',
+                    ': { "0":',
+                    '"',
+                    whitelist[i],
+                    '"',
+                    ', "1":',
+                    '"',
+                    amountString,
+                    '"',
+                    " }"
+                );
             } else {
                 // 其余地址后加逗号
-                json = string.concat(json, '"', vm.toString(i), '"', ': { "0":', '"',whitelist[i],'"',', "1":', '"',amountString,'"', ' },');
+                json = string.concat(
+                    json,
+                    '"',
+                    vm.toString(i),
+                    '"',
+                    ': { "0":',
+                    '"',
+                    whitelist[i],
+                    '"',
+                    ', "1":',
+                    '"',
+                    amountString,
+                    '"',
+                    " },"
+                );
             }
         }
         // 拼接 JSON 字符串的结尾部分
-        json = string.concat(json, '} }');
+        json = string.concat(json, "} }");
 
         // 返回最终生成的 JSON 字符串
         return json;
