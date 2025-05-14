@@ -60,6 +60,7 @@ contract MerkleAirdropTest is Test, ZkSyncChainChecker {
         //对摘要进行签名
         (uint8 v, bytes32 r, bytes32 s) = vm.sign(privateKey, digist);
         vm.prank(gasPayer);
+        // gasPayer使用签名替user领取空投，并支付gas费
         airdrop.claim(user, AMOUNT_TO_CLAIM, getProof(), v, r, s);
 
         uint256 endingBalance = token.balanceOf(user);
